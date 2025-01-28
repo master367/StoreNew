@@ -21,6 +21,7 @@ import (
 )
 
 var sessionStore = sessions.NewCookieStore([]byte("12345678"))
+var PORT = 8080
 
 type Cigarette struct {
 	Brand    string  `json:"brand,omitempty" bson:"brand,omitempty"`
@@ -402,6 +403,6 @@ func main() {
 	r.HandleFunc("/cigarette/update", updateCigarettePrice).Methods("POST")
 	r.HandleFunc("/cart/send-email", sendCartByEmail).Methods("GET")
 
-	log.Printf("Server started on %s", getLink(8080))
+	log.Printf("Server started on %s", getLink(PORT))
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

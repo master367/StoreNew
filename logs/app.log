@@ -480,3 +480,204 @@
 {"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T16:16:25+05:00"}
 {"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T16:18:50+05:00"}
 {"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T16:18:50+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T17:23:33+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T17:23:33+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T17:25:15+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T17:25:15+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T17:25:25+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T17:25:25+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T17:27:48+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T17:27:48+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T17:38:41+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T17:38:41+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T17:41:11+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T17:41:11+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T18:08:14+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T18:08:14+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T18:10:02+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T18:10:02+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T18:16:12+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T18:16:12+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T18:16:40+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T18:16:40+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T18:19:05+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T18:19:05+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:12:25+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:12:25+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:14:43+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:14:43+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:20:22+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:20:22+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:24:22+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:24:22+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:29:01+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:29:01+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:33:01+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:33:01+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:39:03+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:39:03+05:00"}
+{"ip":"[::1]:54926","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:39:31+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:39:31+05:00"}
+{"ip":"[::1]:54926","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:39:33+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:39:33+05:00"}
+{"ip":"[::1]:54967","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:22+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:22+05:00"}
+{"ip":"[::1]:54967","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:31+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:31+05:00"}
+{"ip":"[::1]:54967","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:31+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:31+05:00"}
+{"ip":"[::1]:54967","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:32+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:32+05:00"}
+{"ip":"[::1]:54967","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:32+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:32+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:32+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:35+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:35+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:35+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:35+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:35+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:35+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:36+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:37+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:54967","time":"2025-01-24T20:40:37+05:00"}
+{"ip":"[::1]:55001","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:52+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:52+05:00"}
+{"ip":"[::1]:55001","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:53+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:53+05:00"}
+{"ip":"[::1]:55001","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:53+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:53+05:00"}
+{"ip":"[::1]:55001","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:54+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:54+05:00"}
+{"ip":"[::1]:55001","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:54+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:54+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:54+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:54+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:54+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:54+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:54+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:54+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:55+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:55+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:55+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55001","time":"2025-01-24T20:40:55+05:00"}
+{"ip":"[::1]:55022","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:55+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:55+05:00"}
+{"ip":"[::1]:55022","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:55+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:55+05:00"}
+{"ip":"[::1]:55022","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:55+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:55+05:00"}
+{"ip":"[::1]:55022","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:55+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:55+05:00"}
+{"ip":"[::1]:55022","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:40:55+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:40:55+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:40:55+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:40:56+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:40:59+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:40:59+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:00+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:01+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:02+05:00"}
+{"level":"info","msg":"Rate limit exceeded for IP: [::1]:55022","time":"2025-01-24T20:41:02+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:42:21+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:42:21+05:00"}
+{"ip":"[::1]:55143","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:42:32+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:42:32+05:00"}
+{"ip":"[::1]:55143","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:42:34+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:42:34+05:00"}
+{"ip":"[::1]:55143","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:42:37+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:42:37+05:00"}
+{"ip":"[::1]:55143","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:42:37+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:42:37+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:51:04+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:51:04+05:00"}
+{"ip":"[::1]:55252","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:51:29+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:51:29+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:54:00+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:54:00+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:54:32+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:54:32+05:00"}
+{"ip":"[::1]:55299","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:54:54+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:54:54+05:00"}
+{"ip":"[::1]:55299","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T20:54:57+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T20:54:57+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:56:41+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:56:41+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:57:56+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:57:56+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T20:59:54+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T20:59:54+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:03:20+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:03:20+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:05:21+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:05:21+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:25:33+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:25:33+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:27:55+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:27:55+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:31:36+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:31:36+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:33:34+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:33:34+05:00"}
+{"ip":"[::1]:55693","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T21:33:58+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T21:33:58+05:00"}
+{"ip":"[::1]:55693","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T21:33:59+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T21:33:59+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:35:11+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:35:11+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:37:45+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:37:45+05:00"}
+{"ip":"[::1]:55744","level":"info","method":"POST","msg":"Request received","time":"2025-01-24T21:38:22+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-24T21:38:22+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:39:49+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:39:49+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-24T21:57:34+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-24T21:57:34+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-26T01:08:55+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-26T01:08:55+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-26T01:08:56+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-26T01:08:56+05:00"}
+{"level":"fatal","msg":"listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","time":"2025-01-26T01:08:56+05:00"}
+{"ip":"[::1]:64026","level":"info","method":"POST","msg":"Request received","time":"2025-01-26T01:09:34+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-26T01:09:34+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-28T18:42:09+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-28T18:42:09+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-28T18:46:32+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-28T18:46:32+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-28T18:47:51+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-28T18:47:51+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T01:08:09+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T01:08:09+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T01:08:59+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T01:08:59+05:00"}
+{"ip":"[::1]:65119","level":"info","method":"POST","msg":"Request received","time":"2025-01-29T01:09:06+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-29T01:09:06+05:00"}
+{"ip":"[::1]:65119","level":"info","method":"POST","msg":"Request received","time":"2025-01-29T01:09:07+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-29T01:09:07+05:00"}
+{"ip":"[::1]:65119","level":"info","method":"POST","msg":"Request received","time":"2025-01-29T01:09:11+05:00","url":"/cart/add"}
+{"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-29T01:09:11+05:00"}

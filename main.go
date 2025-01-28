@@ -15,7 +15,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"golang.org/x/crypto/bcrypt"
+
 	"golang.org/x/time/rate"
 	"gopkg.in/gomail.v2"
 )
@@ -28,33 +28,22 @@ type Cigarette struct {
 	PhotoURL string  `json:"photo_url,omitempty" bson:"photo_url,omitempty"`
 }
 
-type User struct {
-	Email    string `json:"email,omitempty" bson:"email,omitempty"`
-	Password string `json:"password,omitempty" bson:"password,omitempty"`
-}
-
-type Cart struct {
-	ID    string      `json:"id,omitempty" bson:"_id,omitempty"`
-	Items []Cigarette `json:"items,omitempty" bson:"items,omitempty"`
-	Total float64     `json:"total,omitempty" bson:"total,omitempty"`
-}
-
 var limiter = make(map[string]*rate.Limiter)
 var limiterLock = &sync.Mutex{}
 var log = logrus.New()
 var client *mongo.Client
 var assortmentCollection *mongo.Collection
 var cartCollection *mongo.Collection
-var loginCollection *mongo.Collection
 
 func uploadPhoto(w http.ResponseWriter, r *http.Request) {
-
-	err := r.ParseMultipartForm(10 << 20)
+	// Parse the multipart form
+	err := r.ParseMultipartForm(10 << 20) // Max upload size: 10 MB
 	if err != nil {
 		http.Error(w, "File too large", http.StatusBadRequest)
 		return
 	}
 
+	// Retrieve the file from the form data
 	file, handler, err := r.FormFile("photo")
 	if err != nil {
 		http.Error(w, "Error reading file", http.StatusBadRequest)
@@ -62,8 +51,10 @@ func uploadPhoto(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
+	// Create the uploads directory if it doesn't exist
 	os.MkdirAll("uploads", os.ModePerm)
 
+	// Save the file to the server
 	filePath := "uploads/" + handler.Filename
 	dest, err := os.Create(filePath)
 	if err != nil {
@@ -78,6 +69,7 @@ func uploadPhoto(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Save the photo URL to the database
 	brand := r.FormValue("brand")
 	filter := bson.M{"brand": brand}
 	update := bson.M{"$set": bson.M{"photo_url": "/" + filePath}}
@@ -89,77 +81,6 @@ func uploadPhoto(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, "Photo uploaded successfully: %s", filePath)
-}
-
-func registerUser(w http.ResponseWriter, r *http.Request) {
-	var user User
-	err := json.NewDecoder(r.Body).Decode(&user)
-	if err != nil {
-		http.Error(w, "Invalid input", http.StatusBadRequest)
-		return
-	}
-
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-	user.Password = string(hashedPassword)
-
-	_, err = loginCollection.InsertOne(context.Background(), user)
-	if err != nil {
-		http.Error(w, "Error registering user", http.StatusInternalServerError)
-		return
-	}
-
-	w.WriteHeader(http.StatusCreated)
-	fmt.Fprintf(w, "User registered successfully")
-}
-
-func changePassword(w http.ResponseWriter, r *http.Request) {
-	var data struct {
-		Email       string `json:"email"`
-		OldPassword string `json:"old_password"`
-		NewPassword string `json:"new_password"`
-	}
-	err := json.NewDecoder(r.Body).Decode(&data)
-	if err != nil {
-		http.Error(w, "Invalid input", http.StatusBadRequest)
-		return
-	}
-
-	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer client.Disconnect(context.Background())
-
-	db := client.Database("Shop")
-	loginCollection := db.Collection("login")
-
-	var user User
-	err = loginCollection.FindOne(context.Background(), bson.M{"email": data.Email}).Decode(&user)
-	if err != nil {
-		http.Error(w, "User not found", http.StatusNotFound)
-		return
-	}
-
-	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(data.OldPassword))
-	if err != nil {
-		http.Error(w, "Incorrect old password", http.StatusUnauthorized)
-		return
-	}
-
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(data.NewPassword), bcrypt.DefaultCost)
-
-	_, err = loginCollection.UpdateOne(
-		context.Background(),
-		bson.M{"email": data.Email},
-		bson.M{"$set": bson.M{"password": string(hashedPassword)}},
-	)
-	if err != nil {
-		http.Error(w, "Error updating password", http.StatusInternalServerError)
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Password updated successfully")
 }
 
 func rateLimit(next http.Handler) http.Handler {
@@ -177,7 +98,7 @@ func rateLimit(next http.Handler) http.Handler {
 
 		if !limiter[ip].Allow() {
 			log.Printf("Rate limit exceeded for IP: %s", ip)
-			http.Error(w, "Rate limit!!! ", http.StatusTooManyRequests)
+			http.Error(w, "Превышен лимит запросов", http.StatusTooManyRequests)
 			return
 		}
 
@@ -269,14 +190,13 @@ func connectToMongo() {
 	}
 	log.Info("Успешно подключено к MongoDB")
 	assortmentCollection = client.Database("Shop").Collection("assortment")
-	loginCollection = client.Database("Shop").Collection("login")
 	cartCollection = client.Database("Shop").Collection("cart")
 }
 
 func getCigarettesWithFilters(w http.ResponseWriter, r *http.Request) {
 	brand := r.URL.Query().Get("brand")
 	sortField := r.URL.Query().Get("sortField")
-	sortOrder := r.URL.Query().Get("sortOrder")
+	sortOrder := r.URL.Query().Get("sortOrder") // "asc" или "desc"
 	limitParam := r.URL.Query().Get("limit")
 	pageParam := r.URL.Query().Get("page")
 
@@ -342,23 +262,24 @@ func addCigaretteToCart(w http.ResponseWriter, r *http.Request) {
 		log.WithFields(logrus.Fields{
 			"error": err.Error(),
 		}).Error("Error decoding cigarette")
-		http.Error(w, "Error decoding cigarette", http.StatusBadRequest)
+		http.Error(w, "Неверный ввод", http.StatusBadRequest)
 		return
 	}
-	fmt.Println(cigarette)
+	fmt.Println(cigarette) //empty cigarettes type image url ...
 
+	// Добавление сигареты в корзину
 	_, err = cartCollection.InsertOne(context.Background(), cigarette)
 	if err != nil {
 		log.WithFields(logrus.Fields{
 			"error": err.Error(),
 		}).Error("Error adding to cart")
-		http.Error(w, "Error adding to cart", http.StatusInternalServerError)
+		http.Error(w, "Ошибка при добавлении в корзину", http.StatusInternalServerError)
 		return
 	}
 
 	log.Info("Cigarette added to cart successfully")
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Cigarette added to cart successfully")
+	fmt.Fprintf(w, "Сигарета добавлена в корзину")
 }
 
 func getCart(w http.ResponseWriter, r *http.Request) {
@@ -403,7 +324,6 @@ func serveHTML(w http.ResponseWriter, r *http.Request) {
 	}
 	tmpl.Execute(w, nil)
 }
-
 func removeItemFromCart(w http.ResponseWriter, r *http.Request) {
 	var cigarette Cigarette
 	err := json.NewDecoder(r.Body).Decode(&cigarette)
@@ -467,7 +387,7 @@ func main() {
 	connectToMongo()
 
 	r := mux.NewRouter()
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./")))
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	r.PathPrefix("/uploads/").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("./uploads/"))))
 	r.HandleFunc("/upload-photo", uploadPhoto).Methods("POST")
 	r.HandleFunc("/add-to-cart", addCigaretteToCart)
@@ -479,9 +399,8 @@ func main() {
 	r.HandleFunc("/cigarette", getCigaretteByBrand).Methods("GET")
 	r.HandleFunc("/cigarette/update", updateCigarettePrice).Methods("POST")
 	r.HandleFunc("/", serveHTML)
-	r.HandleFunc("/register", registerUser).Methods("POST")
 	r.HandleFunc("/cart/send-email", sendCartByEmail).Methods("GET")
-	r.HandleFunc("/change-password", changePassword)
+
 	log.Printf("Server started on %s", getLink(8080))
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

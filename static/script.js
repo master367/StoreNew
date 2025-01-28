@@ -47,7 +47,7 @@ async function changePassword() {
     const oldPassword = document.getElementById('changeOldPassword').value;
     const newPassword = document.getElementById('changeNewPassword').value;
 
-
+    // Validate the form inputs
     if (!username || !oldPassword || !newPassword) {
         alert("Please fill in all fields.");
         return;
@@ -243,3 +243,16 @@ clearCartBtn.addEventListener('click', clearCart);
 
 fetchFilteredProducts();
 fetchCart();
+
+function openTab(tabId) {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Убираем активный класс со всех кнопок и содержимого
+    tabButtons.forEach(button => button.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    // Активируем выбранную вкладку
+    document.getElementById(tabId).classList.add('active');
+    document.querySelector(`[onclick="openTab('${tabId}')"]`).classList.add('active');
+}

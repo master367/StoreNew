@@ -4,189 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cigarette Shop</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f2f5;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 30px auto;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #444;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin-top: 40px;
-      font-size: 1.8em;
-    }
-
-    .filters, .search, .update, .pagination {
-      background-color: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .filters select, .filters input,
-    .search input, .update input {
-      margin-right: 10px;
-      padding: 8px;
-      font-size: 1em;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .product, .cart-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 10px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .product h3, .cart-item h4 {
-      margin: 0;
-    }
-
-    .product p, .cart-item p {
-      margin: 5px 0;
-    }
-
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .pagination button {
-      margin: 0 5px;
-    }
-
-    #products, #cart {
-      margin-top: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-
 <div class="container">
-  <h1>Cigarette Shop</h1>
+  <h1 class="gradient-title">Cigarette <span>Shop</span></h1>
 
-
-  <div class="register">
-    <h2>Register</h2>
-    <input type="email" id="registerEmail" placeholder="Enter email" required>
-    <input type="password" id="registerPassword" placeholder="Enter password" required>
-    <button onclick="registerUser()">Register</button>
-    <div id="registerResult"></div>
+  <!-- Вкладки -->
+  <div class="tabs">
+    <button class="tab-button active" onclick="openTab('catalogTab')">Catalog</button>
+    <button class="tab-button" onclick="openTab('cartTab')">Cart</button>
+    <button class="tab-button" onclick="openTab('registerTab')">Register</button>
+    <button class="tab-button" onclick="openTab('otherTab')">Other</button>
   </div>
 
+  <!-- Содержимое вкладок -->
+  <div id="catalogTab" class="tab-content active">
+    <!-- Заголовок каталога -->
+    <div class="catalog-header">
+      <h2>Our Products</h2>
+      <p>Explore the variety of products and filter them to find exactly what you need!</p>
+    </div>
 
-  <div class="change-password">
+    <!-- Фильтры и сортировка -->
+    <div class="filters">
+      <input type="text" id="filterBrand" placeholder="Search by brand" class="input-field">
+      <select id="sortField" class="input-field">
+        <option value="">Sort By</option>
+        <option value="brand">Brand</option>
+        <option value="price">Price</option>
+      </select>
+      <select id="sortOrder" class="input-field">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      <button onclick="fetchFilteredProducts()" class="primary-button">Apply Filters</button>
+    </div>
+
+    <!-- Продукты -->
+    <div id="products" class="products-grid">
+      <!-- Здесь товары будут добавляться функцией fetchFilteredProducts() -->
+    </div>
+    <div class="pagination">
+      <button id="prevPage" onclick="changePage(-1)" class="primary-button">← Previous</button>
+      <span id="currentPage">1</span>
+      <button id="nextPage" onclick="changePage(1)" class="primary-button">Next →</button>
+    </div>
+  </div>
+
+  <!-- Корзина -->
+  <div id="cartTab" class="tab-content">
+    <h2>Your Cart</h2>
+    <div id="cart"></div>
+    <button id="clearCartBtn" onclick="clearCart()" class="danger-button">Clear Cart</button>
+    <div class="cart-email">
+      <h2>Send Cart to Email</h2>
+      <input type="email" id="cartEmail" placeholder="Enter your email" class="input-field">
+      <button onclick="sendCart()" class="primary-button">Send</button>
+      <div id="cartResult"></div>
+    </div>
+  </div>
+
+  <!-- Регистрация -->
+  <div id="registerTab" class="tab-content">
+    <h2>Register</h2>
+    <input type="email" id="registerEmail" placeholder="Enter your email" class="input-field">
+    <input type="password" id="registerPassword" placeholder="Enter your password" class="input-field">
+    <button onclick="registerUser()" class="success-button">Register</button>
+    <div id="registerResult"></div>
+
     <h2>Change Password</h2>
-    <input type="text" id="changeUsername" placeholder="Enter your username" required>
-    <input type="password" id="changeOldPassword" placeholder="Enter old password" required>
-    <input type="password" id="changeNewPassword" placeholder="Enter new password" required>
-    <button onclick="changePassword()">Change Password</button>
+    <input type="text" id="changeUsername" placeholder="Enter username" class="input-field">
+    <input type="password" id="changeOldPassword" placeholder="Enter old password" class="input-field">
+    <input type="password" id="changeNewPassword" placeholder="Enter new password" class="input-field">
+    <button onclick="changePassword()" class="primary-button">Change</button>
     <div id="changePasswordResult"></div>
   </div>
 
-
-  
-  <div class="cart-email">
-    <h2>Send Cart to Email</h2>
-    <input type="email" id="cartEmail" placeholder="Enter your email" required>
-    <button onclick="sendCart()">Send Cart</button>
-    <div id="cartResult"></div>
-  </div>
-
-  <div class="upload-photo">
+  <!-- Прочие действия -->
+  <div id="otherTab" class="tab-content">
     <h2>Upload Photo</h2>
-    <form id="photoUploadForm" enctype="multipart/form-data">
-      <input type="text" name="brand" placeholder="Cigarette Brand" required>
-      <input type="file" name="photo" accept="image/*" required>
-      <button type="submit">Upload</button>
+    <form id="photoUploadForm" enctype="multipart/form-data" onsubmit="uploadPhoto(event)">
+      <input type="text" name="brand" placeholder="Cigarette Brand" class="input-field">
+      <input type="file" name="photo" accept="image/*" class="input-field">
+      <button type="submit" class="primary-button">Upload</button>
     </form>
     <div id="uploadResult"></div>
-  </div>
 
-  <div class="search">
     <h2>Search Cigarette</h2>
-    <input type="text" id="searchBrand" placeholder="Enter brand">
-    <button onclick="searchByBrand()">Search</button>
+    <input type="text" id="searchBrand" placeholder="Enter brand name" class="input-field">
+    <button onclick="searchByBrand()" class="primary-button">Search</button>
     <div id="searchResult"></div>
-  </div>
 
-  <div class="update">
     <h2>Update Price</h2>
-    <input type="text" id="updateBrand" placeholder="Enter brand">
-    <input type="number" id="updatePrice" placeholder="Enter new price">
-    <button onclick="updatePrice()">Update</button>
+    <input type="text" id="updateBrand" placeholder="Enter brand" class="input-field">
+    <input type="number" id="updatePrice" placeholder="Enter new price" class="input-field">
+    <button onclick="updatePrice()" class="primary-button">Update</button>
     <div id="updateResult"></div>
   </div>
-
-  <div class="filters">
-    <h2>Filter and Sort</h2>
-    <input type="text" id="filterBrand" placeholder="Filter by brand">
-    <select id="sortField">
-      <option value="">Sort By</option>
-      <option value="brand">Brand</option>
-      <option value="price">Price</option>
-    </select>
-    <select id="sortOrder">
-      <option value="asc">Ascending</option>
-      <option value="desc">Descending</option>
-    </select>
-    <button onclick="fetchFilteredProducts()">Apply</button>
-  </div>
-
-  <div class="pagination">
-    <button id="prevPage" onclick="changePage(-1)">Previous</button>
-    <span id="currentPage">1</span>
-    <button id="nextPage" onclick="changePage(1)">Next</button>
-  </div>
-
-  <h2>Products</h2>
-  <div id="products"></div>
-
-  <h2>Your Cart</h2>
-  <div id="cart"></div>
-  <button id="clearCartBtn">Clear Cart</button>
 </div>
 
-<script src="script.js" defer> </script>
-
+<script src="static/script.js"></script>
 </body>
 </html>

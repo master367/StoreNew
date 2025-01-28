@@ -709,3 +709,10 @@
 {"level":"info","msg":"Cigarette added to cart successfully","time":"2025-01-29T02:22:47+05:00"}
 {"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T02:24:16+05:00"}
 {"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T02:24:17+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T02:57:42+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T02:57:42+05:00"}
+{"level":"fatal","msg":"listen tcp: lookup tcp/PORT: unknown port","time":"2025-01-29T02:57:42+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T02:57:58+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T02:57:58+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T03:17:17+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T03:17:17+05:00"}

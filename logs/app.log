@@ -716,3 +716,7 @@
 {"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T02:57:58+05:00"}
 {"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T03:17:17+05:00"}
 {"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T03:17:17+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T03:35:09+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T03:35:09+05:00"}
+{"level":"info","msg":"Успешно подключено к MongoDB","time":"2025-01-29T03:39:14+05:00"}
+{"level":"info","msg":"Server started on http://localhost:8080","time":"2025-01-29T03:39:14+05:00"}

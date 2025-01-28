@@ -58,11 +58,11 @@
     <div id="cart"></div>
     <button id="clearCartBtn" onclick="clearCart()" class="danger-button">Clear Cart</button>
     <div class="cart-email">
-      <h2>Send Cart to Email</h2>
-      <input type="email" id="cartEmail" placeholder="Enter your email" class="input-field">
-      <button onclick="sendCart()" class="primary-button">Send</button>
+      <h2>Send Cart to Your Email</h2>
+      <button onclick="sendCartToUserEmail()" class="primary-button">Send</button>
       <div id="cartResult"></div>
     </div>
+
   </div>
 
   <!-- Регистрация -->
@@ -101,6 +101,7 @@
     <input type="number" id="updatePrice" placeholder="Enter new price" class="input-field">
     <button onclick="updatePrice()" class="primary-button">Update</button>
     <div id="updateResult"></div>
+
   </div>
 </div>
 

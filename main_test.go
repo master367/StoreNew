@@ -10,8 +10,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var userCollection *mongo.Collection
-
 // Инициализация перед тестами
 func TestMain(m *testing.M) {
 	// Подключаемся к MongoDB

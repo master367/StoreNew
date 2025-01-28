@@ -11,15 +11,16 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 	"github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-
 	"golang.org/x/time/rate"
 	"gopkg.in/gomail.v2"
 )
 
+var sessionStore = sessions.NewCookieStore([]byte("12345678")) // Используйте безопасный ключ
 type Cigarette struct {
 	Brand    string  `json:"brand,omitempty" bson:"brand,omitempty"`
 	Type     string  `json:"type,omitempty" bson:"type,omitempty"`
@@ -107,24 +108,26 @@ func rateLimit(next http.Handler) http.Handler {
 }
 
 func sendCartByEmail(w http.ResponseWriter, r *http.Request) {
-	email := r.URL.Query().Get("email")
-	if email == "" {
-		http.Error(w, "Email is required", http.StatusBadRequest)
+	// Извлечение email из сессии пользователя
+	session, _ := sessionStore.Get(r, "user-session")
+	email, ok := session.Values["email"].(string)
+	if !ok || email == "" {
+		http.Error(w, "User not logged in", http.StatusUnauthorized)
 		return
 	}
 
+	// Получение всех товаров в корзине
 	cursor, err := cartCollection.Find(context.Background(), bson.D{})
 	if err != nil {
 		http.Error(w, "Error fetching cart", http.StatusInternalServerError)
 		return
 	}
 	defer cursor.Close(context.Background())
+
 	var cart []Cigarette
 	for cursor.Next(context.Background()) {
 		var item Cigarette
-		fmt.Println(item)
 		err := cursor.Decode(&item)
-
 		if err != nil {
 			http.Error(w, "Error decoding cart item", http.StatusInternalServerError)
 			return
@@ -132,6 +135,7 @@ func sendCartByEmail(w http.ResponseWriter, r *http.Request) {
 		cart = append(cart, item)
 	}
 
+	// Формирование сообщения
 	message := "<h1>Your Cart:</h1><br>"
 	for _, item := range cart {
 		message += fmt.Sprintf(`
@@ -145,13 +149,15 @@ func sendCartByEmail(w http.ResponseWriter, r *http.Request) {
 			<hr>
 		`, item.Brand, item.Price, item.Type, item.Category, item.PhotoURL, item.Brand)
 	}
+
+	// Отправка письма
 	m := gomail.NewMessage()
-	m.SetHeader("From", "d4mirk@gmail.com")
+	m.SetHeader("From", "d4mirk@gmail.com") // Замените на корректный email
 	m.SetHeader("To", email)
 	m.SetHeader("Subject", "Your Cart")
 	m.SetBody("text/html", message)
 
-	d := gomail.NewDialer("smtp.gmail.com", 587, "d4mirk@gmail.com", "jpez vbec xcup stkj")
+	d := gomail.NewDialer("smtp.gmail.com", 587, "d4mirk@gmail.com", "jpez vbec xcup stkj") // Замените корректными настройками
 
 	if err := d.DialAndSend(m); err != nil {
 		http.Error(w, "Error sending email", http.StatusInternalServerError)
@@ -386,9 +392,15 @@ func getLink(port int) string {
 func main() {
 	connectToMongo()
 
+	initAuth(client)
 	r := mux.NewRouter()
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	r.PathPrefix("/uploads/").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("./uploads/"))))
+
+	r.HandleFunc("/register", registerHandler).Methods("GET", "POST")
+	r.HandleFunc("/login", loginHandler).Methods("GET", "POST")
+
+	r.HandleFunc("/", serveHTML)
 	r.HandleFunc("/upload-photo", uploadPhoto).Methods("POST")
 	r.HandleFunc("/add-to-cart", addCigaretteToCart)
 	r.HandleFunc("/cigarettes", getCigarettesWithFilters).Methods("GET")
@@ -398,7 +410,6 @@ func main() {
 	r.HandleFunc("/cart/clear", clearCart).Methods("POST")
 	r.HandleFunc("/cigarette", getCigaretteByBrand).Methods("GET")
 	r.HandleFunc("/cigarette/update", updateCigarettePrice).Methods("POST")
-	r.HandleFunc("/", serveHTML)
 	r.HandleFunc("/cart/send-email", sendCartByEmail).Methods("GET")
 
 	log.Printf("Server started on %s", getLink(8080))

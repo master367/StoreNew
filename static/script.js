@@ -77,24 +77,25 @@ async function changePassword() {
 }
 
 
-async function sendCart() {
-    const email = document.getElementById('cartEmail').value;
-    if (!email) {
-        alert('Please enter your email');
-        return;
-    }
-
-    const response = await fetch(`/cart/send-email?email=${email}`, {
+function sendCartToUserEmail() {
+    fetch('/cart/send-email', {
         method: 'GET',
-    });
-
-    const resultDiv = document.getElementById('cartResult');
-    if (response.status === 200) {
-        resultDiv.innerHTML = '<p>Your cart has been sent to your email!</p>';
-    } else {
-        resultDiv.innerHTML = '<p>Error sending cart. Please try again.</p>';
-    }
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error('Failed to send cart to email.');
+            }
+        })
+        .then(async data => {
+            document.getElementById('cartResult').innerText = data;
+        })
+        .catch(error => {
+            document.getElementById('cartResult').innerText = error.message;
+        });
 }
+
 
 async function fetchFilteredProducts() {
     const filterBrand = document.getElementById('filterBrand').value;

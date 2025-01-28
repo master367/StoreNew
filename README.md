@@ -18,7 +18,7 @@ The application uses MongoDB to store product assortment and cart data.
 - Ilyas
 - Adilbek
 
-![Project Image](https://github.com/user-attachments/assets/6d2a262d-2a5e-4763-bfac-3758ba26529d)
+![Project Image](https://github.com/user-attachments/assets/834b5745-58d4-405f-a561-f6d3a1eff589)
 
 ---
 

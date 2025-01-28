@@ -10,7 +10,6 @@ import (
 	"net/http"
 )
 
-// User структура для хранения пользователей
 type User struct {
 	Username string `json:"username" bson:"username"`
 	Email    string `json:"email" bson:"email"`
@@ -19,7 +18,6 @@ type User struct {
 
 var userCollection *mongo.Collection
 
-// registerHandler обработчик для регистрации
 func registerHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		tmpl, err := template.ParseFiles("static/register.html")
@@ -31,7 +29,6 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Чтение данных из запроса
 	var user User
 	err := r.ParseForm()
 	if err != nil {
@@ -41,22 +38,18 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 	user.Username = r.FormValue("username")
 	user.Email = r.FormValue("email")
 
-	// Хэширование пароля
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.DefaultCost)
 	if err != nil {
 		http.Error(w, "Error processing password", http.StatusInternalServerError)
 		return
 	}
 	user.Password = string(hashedPassword)
-
-	// Проверка на существование пользователя
 	count, err := userCollection.CountDocuments(context.TODO(), bson.M{"email": user.Email})
 	if err != nil || count > 0 {
 		http.Error(w, "Email already registered", http.StatusConflict)
 		return
 	}
 
-	// Сохранение пользователя в базу данных
 	_, err = userCollection.InsertOne(context.TODO(), user)
 	if err != nil {
 		http.Error(w, "Error creating user", http.StatusInternalServerError)
@@ -66,7 +59,6 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Registration successful!")
 }
 
-// loginHandler обработчик для логина
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		tmpl, err := template.ParseFiles("static/login.html")
@@ -78,11 +70,9 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Чтение данных из запроса
 	email := r.FormValue("email")
 	password := r.FormValue("password")
 
-	// Поиск пользователя в базе данных
 	var user User
 	err := userCollection.FindOne(context.Background(), bson.M{"email": email}).Decode(&user)
 	if err != nil {
@@ -90,14 +80,12 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Сравнение пароля
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	if err != nil {
 		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
 		return
 	}
 
-	// Сохранение email в сессию
 	session, _ := sessionStore.Get(r, "user-session")
 	session.Values["email"] = email
 	err = session.Save(r, w)
@@ -106,11 +94,9 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Перенаправление на index.html
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
-// initAuth инициализация коллекции пользователей
 func initAuth(dbClient *mongo.Client) {
 	userCollection = dbClient.Database("Shop").Collection("users")
 }

@@ -165,7 +165,7 @@ async function addToCart(brand, type, price, category, photo_url) {
     const product = {
         brand: String(brand),
         type: String(type),
-        price: Number(price), // Convert price to a number
+        price: Number(price),
         category: String(category),
         photo_url: String(photo_url)
     };
@@ -204,9 +204,9 @@ async function searchByBrand() {
         const result = await response.json();
         resultDiv.innerHTML = `
     <h3>${result.brand}</h3>
-    <p>Type: ${result.type}</p> <!-- Добавить тип -->
+    <p>Type: ${result.type}</p> 
     <p>Price: $${result.price}</p>
-    <p>Category: ${result.category}</p> <!-- Добавить категорию -->
+    <p>Category: ${result.category}</p> 
   `;
     } else {
         resultDiv.innerHTML = `<p>Курительная продукция не найдена</p>`;
@@ -249,11 +249,9 @@ function openTab(tabId) {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
 
-    // Убираем активный класс со всех кнопок и содержимого
     tabButtons.forEach(button => button.classList.remove('active'));
     tabContents.forEach(content => content.classList.remove('active'));
 
-    // Активируем выбранную вкладку
     document.getElementById(tabId).classList.add('active');
     document.querySelector(`[onclick="openTab('${tabId}')"]`).classList.add('active');
 }

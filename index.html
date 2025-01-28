@@ -10,7 +10,6 @@
 <div class="container">
   <h1 class="gradient-title">Cigarette <span>Shop</span></h1>
 
-  <!-- Вкладки -->
   <div class="tabs">
     <button class="tab-button active" onclick="openTab('catalogTab')">Catalog</button>
     <button class="tab-button" onclick="openTab('cartTab')">Cart</button>
@@ -18,15 +17,12 @@
     <button class="tab-button" onclick="openTab('otherTab')">Other</button>
   </div>
 
-  <!-- Содержимое вкладок -->
   <div id="catalogTab" class="tab-content active">
-    <!-- Заголовок каталога -->
     <div class="catalog-header">
       <h2>Our Products</h2>
       <p>Explore the variety of products and filter them to find exactly what you need!</p>
     </div>
 
-    <!-- Фильтры и сортировка -->
     <div class="filters">
       <input type="text" id="filterBrand" placeholder="Search by brand" class="input-field">
       <select id="sortField" class="input-field">
@@ -41,9 +37,7 @@
       <button onclick="fetchFilteredProducts()" class="primary-button">Apply Filters</button>
     </div>
 
-    <!-- Продукты -->
     <div id="products" class="products-grid">
-      <!-- Здесь товары будут добавляться функцией fetchFilteredProducts() -->
     </div>
     <div class="pagination">
       <button id="prevPage" onclick="changePage(-1)" class="primary-button">← Previous</button>
@@ -52,7 +46,6 @@
     </div>
   </div>
 
-  <!-- Корзина -->
   <div id="cartTab" class="tab-content">
     <h2>Your Cart</h2>
     <div id="cart"></div>
@@ -65,7 +58,6 @@
 
   </div>
 
-  <!-- Регистрация -->
   <div id="registerTab" class="tab-content">
     <h2>Register</h2>
     <input type="email" id="registerEmail" placeholder="Enter your email" class="input-field">
@@ -81,7 +73,6 @@
     <div id="changePasswordResult"></div>
   </div>
 
-  <!-- Прочие действия -->
   <div id="otherTab" class="tab-content">
     <h2>Upload Photo</h2>
     <form id="photoUploadForm" enctype="multipart/form-data" onsubmit="uploadPhoto(event)">

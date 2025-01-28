@@ -1,10 +1,9 @@
-/* Основные изменения */
 body {
-    font-family: 'Inter', sans-serif; /* Современный шрифт */
+    font-family: 'Inter', sans-serif;
     background: #ffffff;
     margin: 0;
     padding: 0;
-    color: #444; /* Более мягкий цвет текста */
+    color: #444;
     line-height: 1.6;
 }
 
@@ -17,7 +16,7 @@ body {
 h1 {
     text-align: center;
     font-weight: 700;
-    color: #1d3557; /* Тёмно-синий */
+    color: #1d3557;
     font-size: 3.2em;
     margin-bottom: 15px;
 }
@@ -34,7 +33,6 @@ h2, p {
     margin-bottom: 20px;
 }
 
-/* Табы */
 .tabs {
     display: flex;
     gap: 12px;
@@ -48,7 +46,7 @@ h2, p {
     font-size: 1.15em;
     border: 2px solid #ececec;
     border-radius: 6px;
-    background: #fafafa; /* Светлый фон */
+    background: #fafafa;
     color: #555;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
@@ -76,7 +74,6 @@ h2, p {
     display: block;
 }
 
-/* Фильтры */
 .filters {
     display: flex;
     gap: 20px;
@@ -98,7 +95,6 @@ h2, p {
     box-shadow: 0 0 8px rgba(0, 119, 255, 0.3);
 }
 
-/* Продукты */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -140,7 +136,6 @@ h2, p {
     color: #1d3557;
 }
 
-/* Кнопки */
 button {
     padding: 12px 24px;
     font-size: 1.05em;
@@ -161,17 +156,15 @@ button:hover {
 }
 
 .danger-button {
-    background: #e63946; /* Красный */
+    background: #e63946;
     color: white;
 }
 
 .success-button {
-    background: #52b788; /* Зелёный */
+    background: #52b788;
     color: white;
 }
 
-/* Пагинация */
-/* Пагинация */
 .pagination {
     display: flex;
     justify-content: center;
@@ -183,10 +176,10 @@ button:hover {
 .pagination button {
     width: 48px;
     height: 48px;
-    border-radius: 50%; /* Круглые кнопки */
+    border-radius: 50%;
     border: none;
-    background: #f1f3f5; /* Светлый серый фон */
-    color: #444; /* Темный текст */
+    background: #f1f3f5;
+    color: #444;
     font-size: 1em;
     font-weight: 600;
     display: flex;
@@ -198,26 +191,24 @@ button:hover {
 }
 
 .pagination button:hover {
-    background: #007bff; /* Ярко-синий при наведении */
-    color: white; /* Белый текст */
+    background: #007bff;
+    color: white;
     box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
-    transform: translateY(-2px); /* Эффект подъёма */
+    transform: translateY(-2px);
 }
 
 .pagination button.active {
-    background: linear-gradient(135deg, #007bff, #00cc88); /* Градиент для активной кнопки */
+    background: linear-gradient(135deg, #007bff, #00cc88);
     color: white;
     box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
-    transform: scale(1.1); /* Увеличение активной кнопки */
+    transform: scale(1.1);
 }
 
-/* Эффект при фокусе */
 .pagination button:focus {
     outline: none;
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5), 0 0 0 3px rgba(0, 123, 255, 0.2);
 }
 
-/* Края для стрелок (например "вперёд" и "назад") */
 .pagination .arrow-button {
     background: #e9eef3;
     color: #888;

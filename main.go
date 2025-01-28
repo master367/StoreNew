@@ -20,7 +20,8 @@ import (
 	"gopkg.in/gomail.v2"
 )
 
-var sessionStore = sessions.NewCookieStore([]byte("12345678")) // Используйте безопасный ключ
+var sessionStore = sessions.NewCookieStore([]byte("12345678"))
+
 type Cigarette struct {
 	Brand    string  `json:"brand,omitempty" bson:"brand,omitempty"`
 	Type     string  `json:"type,omitempty" bson:"type,omitempty"`
@@ -37,14 +38,12 @@ var assortmentCollection *mongo.Collection
 var cartCollection *mongo.Collection
 
 func uploadPhoto(w http.ResponseWriter, r *http.Request) {
-	// Parse the multipart form
-	err := r.ParseMultipartForm(10 << 20) // Max upload size: 10 MB
+	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		http.Error(w, "File too large", http.StatusBadRequest)
 		return
 	}
 
-	// Retrieve the file from the form data
 	file, handler, err := r.FormFile("photo")
 	if err != nil {
 		http.Error(w, "Error reading file", http.StatusBadRequest)
@@ -52,10 +51,8 @@ func uploadPhoto(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	// Create the uploads directory if it doesn't exist
 	os.MkdirAll("uploads", os.ModePerm)
 
-	// Save the file to the server
 	filePath := "uploads/" + handler.Filename
 	dest, err := os.Create(filePath)
 	if err != nil {
@@ -70,7 +67,6 @@ func uploadPhoto(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Save the photo URL to the database
 	brand := r.FormValue("brand")
 	filter := bson.M{"brand": brand}
 	update := bson.M{"$set": bson.M{"photo_url": "/" + filePath}}
@@ -108,7 +104,6 @@ func rateLimit(next http.Handler) http.Handler {
 }
 
 func sendCartByEmail(w http.ResponseWriter, r *http.Request) {
-	// Извлечение email из сессии пользователя
 	session, _ := sessionStore.Get(r, "user-session")
 	email, ok := session.Values["email"].(string)
 	if !ok || email == "" {
@@ -116,7 +111,6 @@ func sendCartByEmail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Получение всех товаров в корзине
 	cursor, err := cartCollection.Find(context.Background(), bson.D{})
 	if err != nil {
 		http.Error(w, "Error fetching cart", http.StatusInternalServerError)
@@ -135,7 +129,6 @@ func sendCartByEmail(w http.ResponseWriter, r *http.Request) {
 		cart = append(cart, item)
 	}
 
-	// Формирование сообщения
 	message := "<h1>Your Cart:</h1><br>"
 	for _, item := range cart {
 		message += fmt.Sprintf(`
@@ -150,15 +143,13 @@ func sendCartByEmail(w http.ResponseWriter, r *http.Request) {
 		`, item.Brand, item.Price, item.Type, item.Category, item.PhotoURL, item.Brand)
 	}
 
-	// Отправка письма
 	m := gomail.NewMessage()
-	m.SetHeader("From", "d4mirk@gmail.com") // Замените на корректный email
+	m.SetHeader("From", "d4mirk@gmail.com")
 	m.SetHeader("To", email)
 	m.SetHeader("Subject", "Your Cart")
 	m.SetBody("text/html", message)
 
-	d := gomail.NewDialer("smtp.gmail.com", 587, "d4mirk@gmail.com", "jpez vbec xcup stkj") // Замените корректными настройками
-
+	d := gomail.NewDialer("smtp.gmail.com", 587, "d4mirk@gmail.com", "jpez vbec xcup stkj")
 	if err := d.DialAndSend(m); err != nil {
 		http.Error(w, "Error sending email", http.StatusInternalServerError)
 		return
@@ -202,7 +193,7 @@ func connectToMongo() {
 func getCigarettesWithFilters(w http.ResponseWriter, r *http.Request) {
 	brand := r.URL.Query().Get("brand")
 	sortField := r.URL.Query().Get("sortField")
-	sortOrder := r.URL.Query().Get("sortOrder") // "asc" или "desc"
+	sortOrder := r.URL.Query().Get("sortOrder")
 	limitParam := r.URL.Query().Get("limit")
 	pageParam := r.URL.Query().Get("page")
 
@@ -217,7 +208,7 @@ func getCigarettesWithFilters(w http.ResponseWriter, r *http.Request) {
 
 	filter := bson.M{}
 	if brand != "" {
-		filter["brand"] = bson.M{"$regex": brand, "$options": "i"} // Регистронезависимый поиск
+		filter["brand"] = bson.M{"$regex": brand, "$options": "i"}
 	}
 
 	sort := bson.D{}
@@ -271,9 +262,8 @@ func addCigaretteToCart(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Неверный ввод", http.StatusBadRequest)
 		return
 	}
-	fmt.Println(cigarette) //empty cigarettes type image url ...
+	fmt.Println(cigarette)
 
-	// Добавление сигареты в корзину
 	_, err = cartCollection.InsertOne(context.Background(), cigarette)
 	if err != nil {
 		log.WithFields(logrus.Fields{

@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"net/http"
 	"os"
+	"strconv"
 	"sync"
 	"time"
 
@@ -21,7 +22,13 @@ import (
 )
 
 var sessionStore = sessions.NewCookieStore([]byte("12345678"))
-var PORT = 8080
+var PORT = func() string {
+	port := os.Getenv("PORT")
+	if port == "" {
+		return "8080" // стандартный порт
+	}
+	return port
+}()
 
 type Cigarette struct {
 	Brand    string  `json:"brand,omitempty" bson:"brand,omitempty"`
@@ -403,6 +410,10 @@ func main() {
 	r.HandleFunc("/cigarette/update", updateCigarettePrice).Methods("POST")
 	r.HandleFunc("/cart/send-email", sendCartByEmail).Methods("GET")
 
-	log.Printf("Server started on %s", getLink(PORT))
+	port, err := strconv.Atoi(PORT)
+	if err != nil {
+		log.Fatalf("Invalid PORT: %v", err)
+	}
+	log.Printf("Server started on %s", getLink(port))
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
